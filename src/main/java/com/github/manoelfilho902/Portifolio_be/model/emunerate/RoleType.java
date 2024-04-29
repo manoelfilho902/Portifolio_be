@@ -11,7 +11,7 @@ package com.github.manoelfilho902.Portifolio_be.model.emunerate;
 public enum RoleType {
     ADMINISTRATOR("One of sistem admintrators"), USER("A simple user of my sistem with limited access");
  
-    private String description;
+    private final String description;
 
     private RoleType(String description) {
         this.description = description;

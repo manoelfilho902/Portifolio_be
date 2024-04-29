@@ -6,6 +6,7 @@ package com.github.manoelfilho902.Portifolio_be.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.manoelfilho902.Portifolio_be.model.entity.common.BaseEntity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -19,23 +20,24 @@ import java.util.Set;
  * @author Manoel Batista <manoelbatista902@gmail.com>
  */
 @Entity
-public class User extends BaseEntity{
+public class User extends BaseEntity {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String userName;
     private String email;
     @JsonIgnore
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Role> roles;
 
     public User() {
     }
 
-    public User(String email, String password) {
+    public User(String userName, String email) {
+        this.userName = userName;
         this.email = email;
-        this.password = password;
     }
 
     public User(Long id, String userName, String email) {
@@ -83,7 +85,5 @@ public class User extends BaseEntity{
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-    
-    
-    
+
 }
