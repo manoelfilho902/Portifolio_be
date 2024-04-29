@@ -13,13 +13,14 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.springframework.security.core.GrantedAuthority;
 
 /**
  *
  * @author Manoel Batista <manoelbatista902@gmail.com>
  */
 @Entity
-public class Role extends BaseEntity {
+public class Role extends BaseEntity implements GrantedAuthority{
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -29,8 +30,16 @@ public class Role extends BaseEntity {
     private RoleType type;
     private String Description;
 
+    public Role() {
+    }
+
     public Role(RoleType type) {
         this.type = type;
+    }
+
+    public Role(RoleType type, String Description) {
+        this.type = type;
+        this.Description = Description;
     }
 
     public Integer getId() {
@@ -58,6 +67,11 @@ public class Role extends BaseEntity {
 
     public void setDescription(String Description) {
         this.Description = Description;
+    }
+
+    @Override
+    public String getAuthority() {
+        return type.name();
     }
 
     

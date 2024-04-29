@@ -26,7 +26,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtService {
 
-    public final String SECRET = "e1930b4927e6b6d92d120c7c1bba3421".toUpperCase();
+    public final String SECRET = "61d6e332fa0cd5e10d2343d48a6aeb4acdf08abc2dc55b454f1bdf5c28e2b6a4".toUpperCase(); // any phase in SHA256
+    
     public final Long EXPIRATION_TIME = Duration.ofHours(2).toMillis();
 
     public Key getSingKey() {
