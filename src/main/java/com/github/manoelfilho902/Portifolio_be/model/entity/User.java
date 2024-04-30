@@ -7,30 +7,39 @@ package com.github.manoelfilho902.Portifolio_be.model.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.manoelfilho902.Portifolio_be.model.entity.common.BaseEntity;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import java.util.Set;
 
 /**
  *
  * @author Manoel Batista <manoelbatista902@gmail.com>
  */
-@Entity
+@Entity(name = "'user'")
 public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false, length = 50)
     private String userName;
+    @Column(nullable = false, length = 60)
     private String email;
+    @Column(nullable = false)
     @JsonIgnore
     private String password;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Role> roles;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    private Person person;
 
     public User() {
     }
@@ -84,6 +93,14 @@ public class User extends BaseEntity {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
 }

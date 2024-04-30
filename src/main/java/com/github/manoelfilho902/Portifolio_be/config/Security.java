@@ -39,9 +39,14 @@ public class Security {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.csrf((t) -> t.disable())
+                .headers((t) -> {
+                    t.frameOptions((fo) -> {
+                        fo.disable();
+                    });
+                }) // ::Todo remove in production!!!!
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests((t) -> {
-                    t.requestMatchers("/auth/login", "/auth/test").permitAll();
+                    t.requestMatchers("/auth/login", "/h2-console/**").permitAll();
                     t.anyRequest().authenticated();
                 }).addFilterBefore(Jwtfilter, UsernamePasswordAuthenticationFilter.class).build();
     }

@@ -4,10 +4,10 @@
  */
 package com.github.manoelfilho902.Portifolio_be.config;
 
+import com.zaxxer.hikari.HikariDataSource;
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 /**
  *
@@ -18,11 +18,12 @@ public class DataSet {
 
     @Bean
     public DataSource dataSource() {
-        final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.sqlite.JDBC");
-        dataSource.setUrl("jdbc:sqlite:myDb.db");
-        dataSource.setUsername("user");
-        dataSource.setPassword("teste1");
-        return dataSource;
+        HikariDataSource hds = new HikariDataSource();
+        hds.setDriverClassName("org.h2.Driver");
+        hds.setJdbcUrl("jdbc:h2:file:/data/data.db");
+        hds.setUsername("user");
+        hds.setPassword("teste1");
+        
+        return hds;
     }
 }
