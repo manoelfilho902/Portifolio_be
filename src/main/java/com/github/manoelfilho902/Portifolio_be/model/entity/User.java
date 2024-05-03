@@ -35,7 +35,7 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     @JsonIgnore
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Role> roles;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id", referencedColumnName = "id")

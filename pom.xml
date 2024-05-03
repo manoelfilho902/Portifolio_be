@@ -58,7 +58,7 @@
         </dependency>
         
         <!-- Data set-->
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-community-dialects</artifactId>
         </dependency>-->
@@ -92,6 +92,14 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-jackson</artifactId>
             <version>0.11.5</version>
+        </dependency>
+        
+        <!--test dependecies-->
+        <!-- https://mvnrepository.com/artifact/de.sven-jacobs/loremipsum -->
+        <dependency>
+            <groupId>de.sven-jacobs</groupId>
+            <artifactId>loremipsum</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 

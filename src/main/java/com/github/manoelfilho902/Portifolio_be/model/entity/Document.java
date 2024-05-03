@@ -5,6 +5,7 @@
 package com.github.manoelfilho902.Portifolio_be.model.entity;
 
 import com.github.manoelfilho902.Portifolio_be.model.emunerate.DocumentType;
+import com.github.manoelfilho902.Portifolio_be.model.entity.common.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -23,7 +24,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "document", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"number", "type"}, name = "DocumentsUnique")})
-public class Document {
+public class Document extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +36,7 @@ public class Document {
     private DocumentType type;
     @Column(name = "expiration_date", nullable = true)
     private LocalDate expirationDate;
+
 
     public Document() {
     }
@@ -70,5 +72,6 @@ public class Document {
     public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
+
 
 }

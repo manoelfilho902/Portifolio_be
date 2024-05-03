@@ -4,6 +4,7 @@
  */
 package com.github.manoelfilho902.Portifolio_be.model.entity;
 
+import com.github.manoelfilho902.Portifolio_be.model.entity.common.BaseEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,7 +21,7 @@ import java.util.Set;
  * @author Manoel Batista <manoelbatista902@gmail.com>
  */
 @Entity(name = "person")
-public class Person {
+public class Person extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +32,7 @@ public class Person {
     private String lastName;
     @Column(nullable = false)
     private LocalDate birthday;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Set<Document> documents;
 
     public Person() {

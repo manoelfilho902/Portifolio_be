@@ -10,6 +10,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.web.config.SpringDataJacksonConfiguration;
+import de.svenjacobs.loremipsum.LoremIpsum;
 
 /**
  *
@@ -30,5 +31,10 @@ public class GeneralConfig {
         objectMapper.registerModule(hibernate6Module);
         
         return objectMapper;
+    }
+    
+    @Bean
+    public LoremIpsum loremIpsum(){
+        return new LoremIpsum();
     }
 }
