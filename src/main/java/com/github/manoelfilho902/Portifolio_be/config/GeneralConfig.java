@@ -37,4 +37,9 @@ public class GeneralConfig {
     public LoremIpsum loremIpsum(){
         return new LoremIpsum();
     }
+    
+    @Bean(name = "AdminPass")
+    public String AdminPass(){
+        return "8f38430f9d60b28e01fd3248dc025b2d";
+    }
 }

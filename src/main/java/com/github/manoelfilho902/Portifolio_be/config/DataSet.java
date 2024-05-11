@@ -20,7 +20,7 @@ public class DataSet {
     public DataSource dataSource() {
         HikariDataSource hds = new HikariDataSource();
         hds.setDriverClassName("org.h2.Driver");
-        hds.setJdbcUrl("jdbc:h2:file:/data/data.db");
+        hds.setJdbcUrl("jdbc:h2:file:./data/data.db");
         hds.setUsername("user");
         hds.setPassword("teste1");
         

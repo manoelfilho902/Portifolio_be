@@ -23,7 +23,7 @@ import org.springframework.security.core.GrantedAuthority;
 public class Role extends BaseEntity implements GrantedAuthority {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Enumerated(EnumType.STRING)
     @Column(unique = true, nullable = false, length = 50)

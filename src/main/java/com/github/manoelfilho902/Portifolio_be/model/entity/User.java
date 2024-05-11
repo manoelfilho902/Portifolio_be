@@ -22,7 +22,7 @@ import java.util.Set;
  *
  * @author Manoel Batista <manoelbatista902@gmail.com>
  */
-@Entity(name = "'user'")
+@Entity(name = "user_entity")
 public class User extends BaseEntity {
 
     @Id

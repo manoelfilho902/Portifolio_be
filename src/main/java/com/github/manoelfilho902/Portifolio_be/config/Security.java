@@ -46,7 +46,7 @@ public class Security {
                 }) // ::Todo remove in production!!!!
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests((t) -> {
-                    t.requestMatchers("/auth/login", "/h2-console/**").permitAll();
+                    t.requestMatchers("/auth/login", "/h2-console/**", "/api-docs", "/api-docs/**").permitAll();
                     t.anyRequest().authenticated();
                 }).addFilterBefore(Jwtfilter, UsernamePasswordAuthenticationFilter.class).build();
     }

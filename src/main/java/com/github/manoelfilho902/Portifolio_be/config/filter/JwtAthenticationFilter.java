@@ -11,8 +11,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -30,6 +33,8 @@ public class JwtAthenticationFilter extends OncePerRequestFilter {
     private JwtService service;
     @Autowired
     private UserService userService;
+    private static final Logger LOG = Logger.getLogger(JwtAthenticationFilter.class.getName());
+    
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -41,9 +46,13 @@ public class JwtAthenticationFilter extends OncePerRequestFilter {
             UserDetails ud = userService.loadUserByUsername(userName);
             
             if(service.validateToken(token, ud)){
-                UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(ud, ud.getAuthorities());
+                UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(ud, null, ud.getAuthorities());
                 upat.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(upat);
+                SecurityContext context = SecurityContextHolder.getContext();
+                context.setAuthentication(upat);
+                
+                LOG.log(Level.INFO, "user: {0}", ud.getUsername());
+                LOG.log(Level.INFO, "result: {0}", Boolean.toString(context.getAuthentication().isAuthenticated()));
             }
 
         }        
