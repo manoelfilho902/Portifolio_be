@@ -16,6 +16,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,7 +43,7 @@ public class BaseController<T extends BaseEntity, ID extends Object> {
         return service.findAll(Example.of(entity), pageable);
     }
 
-    @PostMapping("/find_page_by")
+    @GetMapping("/get_page")
     public Page<T> FindPageByExample(@PageableDefault(size = 50, direction = Sort.Direction.ASC, sort = "id") Pageable pageable) {
         return service.findAll(pageable);
 

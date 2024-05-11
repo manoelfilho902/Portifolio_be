@@ -72,7 +72,7 @@ public class AfterStart {
     private PasswordEncoder encoder;
     private static final Logger LOG = Logger.getLogger(AfterStart.class.getName());
 
-    @PostConstruct
+//    @PostConstruct
     public void init() {
         populateRoles();
         createMainAdmin();

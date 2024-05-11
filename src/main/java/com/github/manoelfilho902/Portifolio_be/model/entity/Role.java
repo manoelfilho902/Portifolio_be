@@ -4,6 +4,7 @@
  */
 package com.github.manoelfilho902.Portifolio_be.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.manoelfilho902.Portifolio_be.model.emunerate.RoleType;
 import com.github.manoelfilho902.Portifolio_be.model.entity.common.BaseEntity;
 import jakarta.persistence.Column;
@@ -80,7 +81,8 @@ public class Role extends BaseEntity implements GrantedAuthority {
     public void setActive(Boolean active) {
         this.active = active;
     }
-
+    
+    @JsonIgnore
     @Override
     public String getAuthority() {
         return type.name();

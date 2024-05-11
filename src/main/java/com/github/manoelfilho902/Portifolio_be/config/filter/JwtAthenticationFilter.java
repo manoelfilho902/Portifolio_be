@@ -51,8 +51,8 @@ public class JwtAthenticationFilter extends OncePerRequestFilter {
                 SecurityContext context = SecurityContextHolder.getContext();
                 context.setAuthentication(upat);
                 
-                LOG.log(Level.INFO, "user: {0}", ud.getUsername());
-                LOG.log(Level.INFO, "result: {0}", Boolean.toString(context.getAuthentication().isAuthenticated()));
+//                LOG.log(Level.INFO, "user: {0}", ud.getUsername());
+//                LOG.log(Level.INFO, "result: {0}", Boolean.toString(context.getAuthentication().isAuthenticated()));
             }
 
         }        
